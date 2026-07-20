@@ -11,7 +11,7 @@ export default function Cover() {
   return (
     <section
       id="chapter-cover"
-      className="relative min-h-[75svh] flex items-center justify-center overflow-hidden bg-ivory-cream museum-grid"
+      className="relative min-h-[55svh] flex items-center justify-center overflow-hidden bg-ivory-cream museum-grid"
     >
       {/* Background Subtle Silhouette */}
       <div className="absolute inset-0 z-0 opacity-15 pointer-events-none flex items-center justify-center">
@@ -22,7 +22,7 @@ export default function Cover() {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col items-center justify-between min-h-[50vh] text-center pt-24 pb-12">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col items-center justify-between min-h-[40vh] text-center pt-20 pb-8">
         {/* Top Header info */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
@@ -43,9 +43,9 @@ export default function Cover() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="my-12"
+          className="my-6"
         >
-          <ValleyRoseLogo size="xl" color="#6B4E42" showText={true} />
+          <ValleyRoseLogo size="custom" className="w-[160px] h-[180px]" color="#6B4E42" showText={true} />
         </motion.div>
 
         {/* Bottom Metadata */}
