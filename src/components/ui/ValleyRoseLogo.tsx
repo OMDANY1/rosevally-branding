@@ -25,7 +25,7 @@ export default function ValleyRoseLogo({
   };
 
   const isWhite = color === 'white' || color === '#F7F1E9' || color === 'white-logo';
-  const logoSrc = isWhite ? '/images/logo-white.png' : '/images/logo-black.png';
+  const logoSrc = isWhite ? '/images/logo-white.png' : '/images/logo-rose-gold.png';
 
   return (
     <div className={`relative flex items-center justify-center ${sizeClasses[size]} ${className}`}>
