@@ -17,10 +17,10 @@ export default function ValleyRoseLogo({
 }: LogoProps) {
   // Map size classes
   const sizeClasses = {
-    sm: 'w-[120px] h-[135px]',
-    md: 'w-[160px] h-[180px]',
-    lg: 'w-[200px] h-[225px]',
-    xl: 'w-[280px] h-[315px]',
+    sm: 'w-[80px] h-[90px]',
+    md: 'w-[108px] h-[120px]',
+    lg: 'w-[135px] h-[150px]',
+    xl: 'w-[190px] h-[210px]',
     custom: 'w-full h-full'
   };
 
