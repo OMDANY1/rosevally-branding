@@ -27,9 +27,54 @@ const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   display: 'swap',
 });
 
+export const viewport = {
+  themeColor: '#F7F1E9',
+};
+
 export const metadata: Metadata = {
-  title: 'Valley Rose — Interactive Brand Guidelines',
-  description: 'The definitive digital Brand Guidelines for Valley Rose — luxury contemporary floral design house. An editorial, timeless digital identity book.',
+  metadataBase: new URL('https://valleyrose.design'),
+  title: 'Valley Rose — Luxury Floral Brand Guidelines',
+  description: 'The official interactive brand guidelines for Valley Rose, showcasing the complete luxury floral identity system, design principles, applications and visual language.',
+  alternates: {
+    canonical: './',
+  },
+  manifest: '/site.webmanifest',
+  appleWebApp: {
+    title: 'Valley Rose',
+    statusBarStyle: 'default',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  openGraph: {
+    title: 'Valley Rose — Luxury Floral Brand Guidelines',
+    description: 'The official interactive brand guidelines for Valley Rose, showcasing the complete luxury floral identity system, design principles, applications and visual language.',
+    url: 'https://valleyrose.design',
+    siteName: 'Valley Rose Brand Guidelines',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Valley Rose Brand Guidelines Preview',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Valley Rose — Luxury Floral Brand Guidelines',
+    description: 'The official interactive brand guidelines for Valley Rose, showcasing the complete luxury floral identity system, design principles, applications and visual language.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({
