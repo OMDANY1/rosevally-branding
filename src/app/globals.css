@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors */
+  --color-dusty-rose: #D9B4B7;
+  --color-blush-pink: #E9C5C6;
+  --color-ivory-cream: #F7F1E9;
+  --color-warm-beige: #E8DCCB;
+  --color-taupe: #B8A89A;
+  --color-mocha-brown: #6B4E42;
+  
+  /* Secondary Colors */
+  --color-sage-green: #B6C8B1;
+  --color-stone-blue: #BFC8D6;
+  --color-lavender-mist: #D8D2E6;
+  --color-soft-mauve: #C9A8B1;
+  
+  /* Metallic Accents */
+  --color-rose-gold: #D9A28C;
+  --color-champagne-gold: #E6C6A1;
+  --color-pearl-beige: #F2E9DE;
+
+  /* Standard theme colors overridden for Valley Rose style */
+  --color-brand-bg: #F7F1E9; /* Ivory Cream */
+  --color-brand-text: #6B4E42; /* Mocha Brown */
+  --color-brand-accent: #D9A28C; /* Rose Gold */
+  
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+:root {
+  --background: #F7F1E9;
+  --foreground: #6B4E42;
+}
+
+html {
+  background-color: var(--color-ivory-cream);
+  color: var(--color-mocha-brown);
+  scroll-behavior: auto; /* Managed by Lenis */
+}
+
+/* Custom thin scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F1E9;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9B4B7;
+  border-radius: 1.5px;
+}
+
+/* Smooth Scrolling with Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  background-color: #F7F1E9;
+  color: #6B4E42;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom helper animations classes */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clip-reveal.active {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Thin editorial lines */
+.divider-line {
+  height: 1px;
+  background-color: rgba(107, 78, 66, 0.12);
+  width: 100%;
+}
+
+.divider-line-gold {
+  height: 1px;
+  background-color: rgba(217, 162, 140, 0.3);
+  width: 100%;
+}
+
+/* Elegant museum background grid */
+.museum-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(107, 78, 66, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(107, 78, 66, 0.015) 1px, transparent 1px);
+}
