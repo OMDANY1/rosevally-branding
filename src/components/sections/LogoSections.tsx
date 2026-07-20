@@ -76,7 +76,7 @@ export default function LogoSections() {
 
               {/* Master SVG with overlay grid lines on hover */}
               <div 
-                className="relative w-48 h-64 flex items-center justify-center cursor-pointer"
+                className="relative w-[130px] h-[172px] flex items-center justify-center cursor-pointer"
                 onMouseEnter={() => setHoveredGrid(true)}
                 onMouseLeave={() => setHoveredGrid(false)}
               >
