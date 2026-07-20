@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '../providers/LanguageProvider';
 import { X, ArrowUpRight } from 'lucide-react';
 import { CHAPTERS } from '@/lib/constants';
+import ValleyRoseLogo from '../ui/ValleyRoseLogo';
 
 export default function Nav() {
   const { lang, setLang } = useLang();
@@ -51,9 +52,9 @@ export default function Nav() {
               e.preventDefault();
               handleChapterClick('cover');
             }}
-            className="text-lg font-serif tracking-[0.2em] text-mocha-brown hover:opacity-60 transition-opacity uppercase leading-none"
+            className="hover:opacity-60 transition-opacity block py-1"
           >
-            Vally Rose
+            <ValleyRoseLogo size="custom" className="w-[100px] h-[34px]" color="black" />
           </a>
 
           {/* Nav Controls */}

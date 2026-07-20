@@ -47,7 +47,7 @@ export default function LogoSections() {
             </div>
             
             <div className="lg:col-span-5 flex justify-center py-8 bg-warm-beige/10 border border-mocha-brown/5 rounded-xl">
-              <ValleyRoseLogo size="lg" color="#6B4E42" showText={true} />
+              <ValleyRoseLogo size="lg" color="black" />
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function LogoSections() {
                 onMouseEnter={() => setHoveredGrid(true)}
                 onMouseLeave={() => setHoveredGrid(false)}
               >
-                <ValleyRoseLogo size="custom" className="w-full h-full text-ivory-cream z-10" color="currentColor" showText={false} />
+                <ValleyRoseLogo size="custom" className="w-full h-full z-10" color="white" />
                 
                 {/* SVG Construction Overlay Lines */}
                 <svg className="absolute inset-0 w-full h-full z-20 pointer-events-none" viewBox="0 0 200 240">
@@ -181,7 +181,7 @@ export default function LogoSections() {
             {/* Visualizer card */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center p-12 bg-warm-beige/20 border border-mocha-brown/5 rounded-xl relative">
               <div className="relative p-8 border border-dashed border-rose-gold/40">
-                <ValleyRoseLogo size="md" color="#6B4E42" showText={false} />
+                <ValleyRoseLogo size="md" color="black" />
                 
                 {/* Exclusion Zone Indicators */}
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-mono text-rose-gold">Exclusion Zone (X)</div>
@@ -214,7 +214,7 @@ export default function LogoSections() {
               {/* Digital indicator */}
               <div className="flex flex-col items-center gap-4">
                 <div className="w-[32px] h-[38px] relative border border-mocha-brown/10 p-0.5">
-                  <ValleyRoseLogo size="custom" className="w-full h-full" color="#6B4E42" showText={false} />
+                  <ValleyRoseLogo size="custom" className="w-full h-full" color="black" />
                 </div>
                 <span className="text-[10px] font-mono text-taupe">DIGITAL: 32px Wide</span>
               </div>
@@ -224,7 +224,7 @@ export default function LogoSections() {
               {/* Print indicator */}
               <div className="flex flex-col items-center gap-4">
                 <div className="w-[56px] h-[66px] relative border border-mocha-brown/10 p-1">
-                  <ValleyRoseLogo size="custom" className="w-full h-full" color="#6B4E42" showText={false} />
+                  <ValleyRoseLogo size="custom" className="w-full h-full" color="black" />
                 </div>
                 <span className="text-[10px] font-mono text-taupe">PRINT: 15mm Wide</span>
               </div>
@@ -259,7 +259,7 @@ export default function LogoSections() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             {/* Variation 1: Primary */}
             <div className="p-8 bg-ivory-cream border border-mocha-brown/10 flex flex-col items-center gap-6 rounded-xl">
-              <ValleyRoseLogo size="md" color="#6B4E42" showText={true} />
+              <ValleyRoseLogo size="md" color="black" />
               <div className="text-center font-mono text-[10px] text-taupe mt-4">
                 <span className="font-semibold text-mocha-brown">PRIMARY</span>
                 <p className="mt-1">Mocha Brown on Ivory Cream</p>
@@ -268,7 +268,7 @@ export default function LogoSections() {
 
             {/* Variation 2: Reversed */}
             <div className="p-8 bg-mocha-brown text-ivory-cream flex flex-col items-center gap-6 rounded-xl">
-              <ValleyRoseLogo size="md" color="#F7F1E9" showText={true} />
+              <ValleyRoseLogo size="md" color="white" />
               <div className="text-center font-mono text-[10px] text-ivory-cream/70 mt-4">
                 <span className="font-semibold text-ivory-cream">REVERSED</span>
                 <p className="mt-1">Ivory Cream on Mocha Brown</p>
@@ -277,7 +277,7 @@ export default function LogoSections() {
 
             {/* Variation 3: Monochrome */}
             <div className="p-8 bg-white border border-mocha-brown/10 flex flex-col items-center gap-6 rounded-xl">
-              <ValleyRoseLogo size="md" color="#000000" showText={true} />
+              <ValleyRoseLogo size="md" color="black" />
               <div className="text-center font-mono text-[10px] text-taupe mt-4">
                 <span className="font-semibold text-black">MONOCHROME</span>
                 <p className="mt-1">Pure Black on Solid White</p>

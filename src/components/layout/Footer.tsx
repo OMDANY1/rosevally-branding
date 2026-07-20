@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useLang } from '../providers/LanguageProvider';
+import ValleyRoseLogo from '../ui/ValleyRoseLogo';
 
 export default function Footer() {
   const { lang } = useLang();
@@ -17,9 +18,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-10 text-center relative z-10">
         {/* Wordmark */}
-        <span className="font-serif text-2xl tracking-[0.3em] text-mocha-brown uppercase font-light">
-          Vally Rose
-        </span>
+        <ValleyRoseLogo size="sm" color="black" />
 
         {/* Small line */}
         <div className="w-12 h-[1px] bg-rose-gold/40" />
