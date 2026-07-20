@@ -14,10 +14,12 @@ interface PostItem {
   categoryAr: string;
   title: string;
   titleAr: string;
-  thumbnail: string;
+  image: string;
   tagline: string;
   taglineAr: string;
-  type: 'carousel' | 'story' | 'feed' | 'highlight' | 'reel';
+  isQuote?: boolean;
+  quoteText?: string;
+  quoteTextAr?: string;
   specs: {
     font: string;
     layout: string;
@@ -27,192 +29,185 @@ interface PostItem {
     copywriting: string;
     copywritingAr: string;
   };
-  carouselSlides?: {
-    image: string;
-    text: string;
-    textAr: string;
-  }[];
-  storyDetails?: {
-    bgImage: string;
-    text: string;
-    textAr: string;
-  };
-  quoteText?: string;
-  careList?: string[];
-  careListAr?: string[];
 }
 
 export default function SocialMediaRevamp() {
   const { lang } = useLang();
   const [selectedPost, setSelectedPost] = useState<PostItem | null>(null);
-  const [activeSlide, setActiveSlide] = useState(0);
 
   const posts: PostItem[] = [
     {
-      id: "carousel-cover",
-      category: "Carousel Cover",
-      categoryAr: "غلاف منشور دائري",
-      title: "Al-Nab'a / The Spring",
-      titleAr: "النبع / مجموعة الربيع",
-      thumbnail: "/images/qatif-oasis.png",
-      tagline: "Derived from silent natural waters",
-      taglineAr: "مستوحى من المياه الساكنة",
-      type: "carousel",
+      id: "ig-bouquet",
+      category: "Branded Bouquet",
+      categoryAr: "باقة بتوقيع العلامة",
+      title: "Luxury Bouquet & Ribbon",
+      titleAr: "باقة زهور وأشرطة مخصصة",
+      image: "/images/ig-bouquet.png",
+      tagline: "Floral stems wrapped in natural linen thread",
+      taglineAr: "سيقان زهور ملفوفة بخيوط الكتان الطبيعية",
       specs: {
-        font: "Cormorant Garamond Regular (H1), Inter Light (Body)",
-        layout: "Asymmetrical vertical split, 60% negative space.",
-        layoutAr: "تقسيم رأسي غير متماثل، ٦٠٪ مساحة سلبية.",
-        margin: "Outer margin 80px, inner text spacing 24px.",
-        color: "Ivory Cream (#F7F1E9) backdrop, Mocha Brown text.",
-        copywriting: "Poetic, slow-paced, focusing on provenance and soil heritage.",
-        copywritingAr: "صياغة شاعرية بطيئة، تركز على المنشأ وإرث الأرض والتربة."
-      },
-      carouselSlides: [
-        { image: "/images/qatif-oasis.png", text: "01 / The Spring Collection", textAr: "٠١ / مجموعة النبع لربيع ٢٠٢٦" },
-        { image: "/images/editorial-arrangement.png", text: "02 / Restrained Floristry", textAr: "٠٢ / تنسيق مبسط للزهور النادرة" },
-        { image: "/images/packaging.png", text: "03 / The Unboxing Ceremony", textAr: "٠٣ / طقوس استلام وفتح الهدية" },
-        { image: "/images/wedding.png", text: "04 / Artistry in Celebration", textAr: "٠٤ / تنسيق فني للمناسبات والأعراس" }
-      ]
+        font: "Inter Light, numbers in Cormorant Garamond Italic",
+        layout: "Central focus crop, 40% surrounding negative space.",
+        layoutAr: "تركيز مركزي مقرب، ٤٠٪ مساحة سلبية محيطة.",
+        margin: "Natural margins with high-contrast framing.",
+        color: "Ivory Cream background, natural green and dust tones.",
+        copywriting: "Quiet descriptions of flower species, avoiding pricing.",
+        copywritingAr: "وصف هادئ لأنواع الزهور ومواسمها دون ذكر الأسعار."
+      }
     },
     {
-      id: "wedding-post",
-      category: "Wedding Collection Post",
-      categoryAr: "منشور مجموعة الأعراس",
-      title: "Noor & Faisal Ceremony",
-      titleAr: "زفاف نور وفيصل",
-      thumbnail: "/images/wedding.png",
-      tagline: "A spatial layout of floral architecture",
-      taglineAr: "تنسيق فراغي لهندسة الزهور",
-      type: "feed",
+      id: "ig-wrapping",
+      category: "Pattern Wrapping",
+      categoryAr: "غلاف منقوش بالنمط",
+      title: "Custom Pattern Wrapping Paper",
+      titleAr: "ورق التغليف بالنمط المعتمد",
+      image: "/images/ig-wrapping.png",
+      tagline: "Hand-illustrated seamless wrapping sheets",
+      taglineAr: "ورق تغليف بنقوش عضوية منسابة",
+      specs: {
+        font: "Cormorant Garamond Regular, Inter Regular",
+        layout: "Asymmetrical diagonal layout grid.",
+        layoutAr: "تخطيط شبكي مائل غير متماثل مريح للعين.",
+        margin: "Balanced borders mimicking print catalog pages.",
+        color: "Dusty Rose (#D9B4B7) pattern base, Ivory Cream paper.",
+        copywriting: "Focusing on packaging tactility and sustainable inks.",
+        copywritingAr: "التركيز على ملمس ورق التغليف وأحبار الطباعة الصديقة للبيئة."
+      }
+    },
+    {
+      id: "ig-gift-box",
+      category: "Luxury Gift Box",
+      categoryAr: "علبة الهدايا الفاخرة",
+      title: "Premium Gift Box & Tissue",
+      titleAr: "صندوق هدايا فاخر وورق مناديل",
+      image: "/images/ig-gift-box.png",
+      tagline: "Rigid unbleached cardboard with wax seals",
+      taglineAr: "كرتون صلب طبيعي مغلق بأختام الشمع",
+      specs: {
+        font: "Cormorant Garamond Italic (H1), Inter Light",
+        layout: "Spacious flatlay composition, 55% negative space.",
+        layoutAr: "تكوين مسطح واسع، ٥٥٪ مساحة سلبية خالية.",
+        margin: "Outer canvas margin 60px, content offsets.",
+        color: "Mocha Brown cardboard box, Blush Pink tissue wrap.",
+        copywriting: "Sincere stories of gift curation and personal messages.",
+        copywritingAr: "رواية تفاصيل إعداد الهدية وقيمة الرسائل الشخصية المكتوبة يدوياً."
+      }
+    },
+    {
+      id: "ig-quote",
+      category: "Editorial Quote",
+      categoryAr: "اقتباس تحريري ملهم",
+      title: "Inspirational Brand Philosophy",
+      titleAr: "فلسفة الدار الخطية الملهمة",
+      image: "",
+      isQuote: true,
+      quoteText: "“Nature does not hurry, yet everything is accomplished.”",
+      quoteTextAr: "“الطبيعة لا تستعجل خطتها، ومع ذلك يتم كل شيء في وقته.”",
+      tagline: "Typography statement in massive space",
+      taglineAr: "خطوط كلاسيكية في مساحة سلبية شاسعة",
       specs: {
         font: "Cormorant Garamond Italic",
-        layout: "High-contrast editorial grid crop, thin border line overlay.",
-        layoutAr: "تخطيط شبكي تحريري عالي التباين مع خطوط حدود رقيقة.",
-        margin: "Standard grid spacing with 10% outer padding.",
-        color: "Mocha Brown on Blush Pink background.",
-        copywriting: "Intimate and silent, carrying details of the couple's program.",
-        copywritingAr: "نبرة هادئة وحميمة، تنقل تفاصيل حفل الزفاف ومزاج المناسبة."
-      },
-      storyDetails: {
-        bgImage: "/images/wedding.png",
-        text: "Noor & Faisal — Spatial Floristry Suite",
-        textAr: "نور وفيصل — جناح التنسيق الزهري الفراغي"
+        layout: "Pure typographical layout, perfectly centered.",
+        layoutAr: "تكوين خطي نقي بالكامل، متمركز رأسياً وأفقياً.",
+        margin: "Restricted to central 30% of the screen boundary.",
+        color: "Ivory Cream background, Mocha Brown text.",
+        copywriting: "Philosophical reflections on slow floristry and organic time.",
+        copywritingAr: "تأملات فلسفية حول تنسيق الزهور البطيء والزمن الطبيعي للنمو."
       }
     },
     {
-      id: "behind-scenes",
-      category: "Behind The Scenes",
-      categoryAr: "كواليس العمل الحرفي",
-      title: "The Florist's Hands",
-      titleAr: "أيدي منسق الزهور",
-      thumbnail: "/images/editorial-arrangement.png",
-      tagline: "Honoring the micro-details of craft",
-      taglineAr: "تقدير التفاصيل الدقيقة للحرفة",
-      type: "feed",
-      specs: {
-        font: "Inter Light, 9px tracking [0.2em] labels",
-        layout: "Extreme close-up macro, natural window lighting.",
-        layoutAr: "لقطة ماكرو مقربة للغاية مع إضاءة نافذة طبيعية جانبية.",
-        margin: "Centered content offset, large white margins.",
-        color: "Natural tones, low contrast saturation.",
-        copywriting: "Focus on the tactile experience: unbleached cotton, woven linen.",
-        copywritingAr: "التركيز على التجربة الملموسة للمواد: القطن غير المبيض، والكتان."
-      }
-    },
-    {
-      id: "story-template",
-      category: "Story Template",
-      categoryAr: "قالب قصص إنستغرام",
-      title: "The Invitation Suite",
-      titleAr: "دعوة زفاف خاصة",
-      thumbnail: "/images/moodboard-01.png",
-      tagline: "Vertical proportion and golden arch lines",
-      taglineAr: "أبعاد رأسية وأقواس ذهبية رقيقة",
-      type: "story",
+      id: "ig-wedding",
+      category: "Spatial Installation",
+      categoryAr: "التنسيق الفراغي للمناسبات",
+      title: "Wedding Arch & Greenery",
+      titleAr: "قوس الزفاف والنباتات المعلقة",
+      image: "/images/ig-wedding.png",
+      tagline: "Modern brass arch with cascading roses",
+      taglineAr: "قوس نحاسي مع طبقات زهور متتالية",
       specs: {
         font: "Cormorant Garamond Light",
-        layout: "Single column, centered vertical alignment with arch line boundary.",
-        layoutAr: "عامود واحد، محاذاة رأسية متمركزة مع حدود منحنية دقيقة.",
-        margin: "Safe zone margins 120px top and bottom.",
-        color: "Ivory Cream background, Rose Gold borders.",
-        copywriting: "Minimalist scheduling information, clean date formatting.",
-        copywritingAr: "تفاصيل الموعد والجدولة بأسلوب مبسط وواضح."
-      },
-      storyDetails: {
-        bgImage: "/images/moodboard-01.png",
-        text: "A Ceremony of Art and Nature",
-        textAr: "طقس فني يجمع الطبيعة بالتصميم"
+        layout: "Architectural grid alignment, tall vertical crops.",
+        layoutAr: "محاذاة شبكية معمارية، لقطات رأسية طويلة.",
+        margin: "Standardized borders mimicking design portfolios.",
+        color: "Sage Green accents, warm brass reflections, soft whites.",
+        copywriting: "Poetic summaries of architectural event spaces.",
+        copywritingAr: "صياغة تعبيرية موجزة تصف فراغ المناسبة وهندستها."
       }
     },
     {
-      id: "floral-tips",
-      category: "Floral Care Tips",
-      categoryAr: "إرشادات العناية بالزهور",
-      title: "Preserving the Bloom",
-      titleAr: "كيف نحافظ على تفتح الزهور",
-      thumbnail: "/images/rose-macro.png",
-      tagline: "Three steps to extend organic lifespan",
-      taglineAr: "ثلاث خطوات لإطالة عمر الباقة",
-      type: "carousel",
+      id: "ig-shopping-bag",
+      category: "Branded Bag",
+      categoryAr: "حقيبة تسوق العلامة",
+      title: "Textured Shopping Bag & Logo",
+      titleAr: "حقيبة تسوق بملمس بارز وشعار مذهب",
+      image: "/images/ig-shopping-bag.png",
+      tagline: "Ivory laid paper with debossed monogram",
+      taglineAr: "حقائب ورق عاجي بمونوغرام غائر خفيف",
       specs: {
-        font: "Inter Light, numbers in Cormorant Garamond Regular",
-        layout: "Numbered list vertical stack, spacious lines.",
-        layoutAr: "قائمة رقمية رأسية مع تباعد أسطر مريح وواسع.",
-        margin: "Margin left 64px, listing indentation 32px.",
-        color: "Ivory Cream background, Mocha Brown text.",
-        copywriting: "Educational, direct, and respectful of the raw materials.",
-        copywritingAr: "نبرة تعليمية ومباشرة تحترم الطبيعة والزهور."
-      },
-      careList: [
-        "1. Trim stems at a 45-degree angle using sharp florist shears.",
-        "2. Place in clean, room-temperature artesian water immediately.",
-        "3. Position in shadow play, avoiding direct harsh sunlight."
-      ],
-      careListAr: [
-        "١. قلم سيقان الزهور بزاوية ٤٥ درجة باستخدام مقص حاد.",
-        "٢. ضع الباقة في ماء ينابيع عذب وبدرجة حرارة الغرفة فوراً.",
-        "٣. اختر مكاناً ظليلاً وبارداً وتجنب أشعة الشمس المباشرة الحارة."
-      ]
+        font: "Inter Light (Monogram labels)",
+        layout: "Close-up macro angle, emphasizing textured paper grains.",
+        layoutAr: "زاوية ماكرو مقربة تبرز نسيج الورق المحبب الفاخر.",
+        margin: "12% safety margin on all edges.",
+        color: "Ivory Cream board, soft shadow play.",
+        copywriting: "Highlighting the post-purchase unboxing ritual.",
+        copywritingAr: "إبراز طقوس استلام الحقيبة وتأثيرها البصري الملموس."
+      }
     },
     {
-      id: "quote-post",
-      category: "Quote Post",
-      categoryAr: "منشور الاقتباس التحريري",
-      title: "Editorial Statement",
-      titleAr: "البيان الفني للهوية",
-      thumbnail: "/images/moodboard-02.png",
-      tagline: "Bold typography in negative space",
-      taglineAr: "خطوط عريضة ومساحات سلبية واسعة",
-      type: "feed",
+      id: "ig-vase",
+      category: "Curated Arrangement",
+      categoryAr: "تنسيق زهور في مزهرية",
+      title: "Vase Sculptural Composition",
+      titleAr: "تكوين منحوت في مزهرية فاخرة",
+      image: "/images/ig-vase.png",
+      tagline: "Sculptural ranunculus in travertine vase",
+      taglineAr: "تنسيق متوازن في وعاء حجر ترافرتين",
       specs: {
-        font: "Cormorant Garamond Italic",
-        layout: "Completely typographical, centered, no backgrounds.",
-        layoutAr: "تكوين خطي نقي بالكامل، متمركز، بدون خلفيات مشتتة.",
-        margin: "Massive margins, text restricted to middle 30% of canvas.",
-        color: "Mocha Brown text on Ivory Cream.",
-        copywriting: "Poetic declarations about beauty, respect, and craftsmanship.",
-        copywritingAr: "عبارات قصيرة ملهمة عن الجمال والاحترام والحرفية اليدوية."
-      },
-      quoteText: "“Some mornings, the light does half the work.” / “بعض الصباحات، الضوء يكمل نصف العمل.”"
+        font: "Cormorant Garamond Regular",
+        layout: "Asymmetrical single-stem focus.",
+        layoutAr: "تنسيق غير متماثل يركز على ساق زهرة منفردة.",
+        margin: "Spacious borders, concrete backdrop.",
+        color: "Stone texture, neutral taupe and warm white.",
+        copywriting: "Silent statement on visual balance and sculptural form.",
+        copywritingAr: "بيان فني صامت حول التوازن البصري والكتلة الهندسية الفنية."
+      }
     },
     {
-      id: "social-thank-you",
-      category: "Thank You Post",
-      categoryAr: "منشور الشكر والختام",
-      title: "Where Happiness Flows",
-      titleAr: "حيث تتدفق السعادة",
-      thumbnail: "/images/logo-sketches.jpg",
-      tagline: "Solid white brand mark centered",
-      taglineAr: "شعار الهوية باللون الأبيض المتمركز",
-      type: "reel",
+      id: "ig-mood",
+      category: "Brand Story Mood",
+      categoryAr: "منشور إلهام وهوية العلامة",
+      title: "Unbleached Textures Moodboard",
+      titleAr: "لوحة إلهام المواد الخام الملموسة",
+      image: "/images/ig-mood.png",
+      tagline: "Tactile materials, plaster, linen and petals",
+      taglineAr: "لوحة مزاجية تجمع الكتان والجبس وبتلات الورد",
       specs: {
-        font: "Inter Light (Tagline)",
-        layout: "Centered emblem layout on solid dark canvas.",
-        layoutAr: "تخطيط يتوسطه شعار الهوية الأبيض على خلفية داكنة.",
-        margin: "Perfect centering on all axes.",
-        color: "Ivory Cream emblem on Mocha Brown background.",
-        copywriting: "Sincere gratitude, highlighting brand signature.",
-        copywritingAr: "شكر وتقدير صادق، مع إبراز توقيع العلامة التجارية."
+        font: "Inter Regular (small tags)",
+        layout: "Masonry collage, overlapping grids.",
+        layoutAr: "تنسيق كولاج غير متماثل بشبكات متداخلة.",
+        margin: "8% border frame.",
+        color: "Warm White, Sage Green, and Blush Pink tones.",
+        copywriting: "Sensory keywords: organic, silent, raw, structured.",
+        copywritingAr: "كلمات حسية مستهدفة: عضوي، صامت، خام، منظم."
+      }
+    },
+    {
+      id: "ig-packaging-detail",
+      category: "Packaging Detail",
+      categoryAr: "تفاصيل التعبئة والتغليف",
+      title: "Wax Seal & Envelope Liner",
+      titleAr: "الختم الشمعي وبطانة المغلف المطبوعة",
+      image: "/images/ig-packaging-detail.png",
+      tagline: "Hand-pressed wax seal on envelope liner",
+      taglineAr: "ختم شمعي مضغوط يدوياً على بطانة المغلف",
+      specs: {
+        font: "Inter Light (Monogram), Cormorant Garamond Regular",
+        layout: "Extreme close-up macro, natural window light.",
+        layoutAr: "لقطة مقربة جداً ماكرو مع إضاءة نافذة طبيعية.",
+        margin: "Centered content, high detail preservation.",
+        color: "Terracotta-blush wax color, Ivory Cream envelope.",
+        copywriting: "Focusing on the tactile and unhurried hand-craft process.",
+        copywritingAr: "التركيز على العمل اليدوي المتأني وتوقيع العلامة الملموس."
       }
     }
   ];
@@ -236,22 +231,22 @@ export default function SocialMediaRevamp() {
           num="22"
           title="Social Media"
           titleAr="وسائل التواصل الاجتماعي"
-          subtitle="Fashion Editorial & Luxury Branding Feed"
-          subtitleAr="معرض رقمي منسق مستوحى من مجلات الموضة"
+          subtitle="Curated 3x3 Instagram Editorial Feed"
+          subtitleAr="تخطيط شبكي متكامل ٣×٣ لإنستغرام منسق تحريرياً"
         />
 
         {/* Narrative layout */}
         <div className="max-w-3xl mb-16 text-sm text-taupe font-sans font-light leading-relaxed">
           <p className={lang === 'ar' ? 'text-right font-ar' : ''}>
             {lang === 'ar'
-              ? 'لا نعامل حساباتنا الاجتماعية كقوالب تسويقية لترويج المبيعات العشوائية؛ بل نصوغها كمعرض فني يضاهي صفحات مجلات الموضة العالمية الفاخرة. نلتزم بمساحات سلبية تزيد عن ٦٠٪ وإضاءة طبيعية دافئة وتخطيطات سويسرية متباينة بدقة. انقر على أي منشور في المعرض أدناه لمعاينة النظام التفاعلي ومواصفاته الفنية.'
-              : 'We reject standard commercial sales graphics, discount grids, and loud overlays. Our social presence functions as a high-end digital gallery space, echoing luxury fashion editorials. We respect the Swiss grid, massive white space, natural side-lighting, and poetic content. Click on any grid post below to open its specifications drawer and test carousels or mockups.'
+              ? 'نعرض أدناه تخطيطاً شبكياً متكاملاً ٣×٣ لحساب إنستغرام الخاص بوادي الورد. تم تصميم كل منشور وتوليده بدقة ليعكس فلسفة العلامة وموادها الملموسة—من أشرطة الكتان المنسوجة وورق التغليف المنقوش بالنمط المعتمد، إلى المزهريات الحجرية واللافتات المعمارية. انقر على أي منشور لمعاينة التخطيط وتفاصيل المواصفات الفنية.'
+              : 'Our social feed acts as a curated editorial magazine layout. Below is our complete 3x3 Instagram grid showcasing high-resolution branded visuals—including linen-wrapped bouquets, custom pattern wrapping paper, rigid gift boxes with wax seals, and concrete-framed spatial designs. Click any tile to inspect its typography, color palettes, and copywriting guidelines.'
             }
           </p>
         </div>
 
-        {/* Instagram Premium Feed Grid (3 Columns) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Instagram Premium 3x3 Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {posts.map((post, idx) => (
             <motion.div
               key={post.id}
@@ -259,16 +254,13 @@ export default function SocialMediaRevamp() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => {
-                setSelectedPost(post);
-                setActiveSlide(0);
-              }}
+              onClick={() => setSelectedPost(post)}
               className="group cursor-pointer bg-warm-beige/10 border border-mocha-brown/5 rounded-xl overflow-hidden hover:border-rose-gold transition-all duration-500 flex flex-col justify-between"
             >
               {/* Thumbnail Container */}
-              <div className="relative w-full aspect-square bg-mocha-brown/5 overflow-hidden border-b border-mocha-brown/5">
+              <div className="relative w-full aspect-square bg-mocha-brown/5 overflow-hidden border-b border-mocha-brown/5 flex items-center justify-center">
                 {/* Overlay details */}
-                <div className="absolute inset-0 bg-mocha-brown/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex flex-col items-center justify-center p-6 text-center text-ivory-cream gap-3">
+                <div className="absolute inset-0 bg-mocha-brown/85 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex flex-col items-center justify-center p-6 text-center text-ivory-cream gap-3">
                   <span className="font-mono text-[9px] uppercase tracking-widest text-rose-gold bg-rose-gold/10 px-2.5 py-1 rounded-full">
                     {lang === 'ar' ? post.categoryAr : post.category}
                   </span>
@@ -277,17 +269,32 @@ export default function SocialMediaRevamp() {
                   </h4>
                   <span className="text-[10px] tracking-wider font-sans font-light opacity-75 mt-1 flex items-center gap-1.5">
                     <BookOpen size={10} />
-                    {lang === 'ar' ? 'انقر لعرض المواصفات' : 'Click to inspect specs'}
+                    {lang === 'ar' ? 'معاينة المواصفات' : 'Inspect Specifications'}
                   </span>
                 </div>
 
-                <Image
-                  src={post.thumbnail}
-                  alt={lang === 'ar' ? post.titleAr : post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-[1.03] grayscale-[20%]"
-                />
+                {post.isQuote ? (
+                  /* Typographic Quote Specimen */
+                  <div className="w-full h-full bg-ivory-cream p-8 flex flex-col justify-between text-center select-none text-mocha-brown relative">
+                    <div className="absolute inset-4 border border-mocha-brown/5 rounded" />
+                    <div className="w-8 h-8 mx-auto opacity-10 flex items-center justify-center">
+                      <ValleyRoseLogo size="custom" className="w-full h-full" color="black" />
+                    </div>
+                    <p className="font-serif text-sm italic leading-relaxed px-4 my-auto">
+                      {lang === 'ar' ? post.quoteTextAr : post.quoteText}
+                    </p>
+                    <span className="font-mono text-[7px] tracking-widest uppercase opacity-40">CHAPTER 22.04</span>
+                  </div>
+                ) : (
+                  /* High resolution generated asset */
+                  <Image
+                    src={post.image}
+                    alt={lang === 'ar' ? post.titleAr : post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 30vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
+                  />
+                )}
               </div>
 
               {/* Caption Summary Panel */}
@@ -306,7 +313,7 @@ export default function SocialMediaRevamp() {
           ))}
         </div>
 
-        {/* Dynamic Modal Drawer for Post Inspection */}
+        {/* Dynamic Specifications Drawer */}
         <AnimatePresence>
           {selectedPost && (
             <div className="fixed inset-0 z-50 flex items-center justify-end overflow-hidden">
@@ -345,141 +352,31 @@ export default function SocialMediaRevamp() {
                   </button>
                 </div>
 
-                {/* Body Content - Dual Split: Top Mockup, Bottom Specs */}
+                {/* Body Content */}
                 <div className="flex-1 overflow-y-auto pr-2 scrollbar-thin">
-                  {/* Dynamic Post Mockup Renderer */}
+                  {/* Mockup Preview box */}
                   <div className="bg-warm-beige/30 p-6 rounded-xl flex justify-center items-center mb-8 border border-mocha-brown/5">
-                    {/* Carousel Swiper View */}
-                    {selectedPost.type === 'carousel' && selectedPost.carouselSlides && (
-                      <div className="w-full max-w-[280px] flex flex-col items-center">
-                        <div className="relative w-full aspect-square bg-ivory-cream border border-mocha-brown/10 rounded overflow-hidden">
-                          <Image
-                            src={selectedPost.carouselSlides[activeSlide].image}
-                            alt="Carousel slide"
-                            fill
-                            sizes="280px"
-                            className="object-cover"
-                          />
-                          
-                          {/* Indicator */}
-                          <div className="absolute top-3 right-3 bg-mocha-brown/80 text-ivory-cream font-mono text-[8px] px-2 py-0.5 rounded">
-                            {activeSlide + 1} / {selectedPost.carouselSlides.length}
-                          </div>
-                        </div>
-
-                        {/* Controls */}
-                        <div className="flex items-center justify-between w-full mt-4">
-                          <button
-                            disabled={activeSlide === 0}
-                            onClick={() => setActiveSlide(prev => Math.max(0, prev - 1))}
-                            className="text-[10px] font-mono uppercase text-taupe disabled:opacity-30 cursor-pointer"
-                          >
-                            Prev
-                          </button>
-                          <div className="flex gap-1.5">
-                            {selectedPost.carouselSlides.map((_, sIdx) => (
-                              <div
-                                key={sIdx}
-                                className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                                  activeSlide === sIdx ? 'bg-rose-gold' : 'bg-mocha-brown/10'
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <button
-                            disabled={activeSlide === selectedPost.carouselSlides.length - 1}
-                            onClick={() => setActiveSlide(prev => Math.min(selectedPost.carouselSlides!.length - 1, prev + 1))}
-                            className="text-[10px] font-mono uppercase text-taupe disabled:opacity-30 cursor-pointer"
-                          >
-                            Next
-                          </button>
-                        </div>
+                    {selectedPost.isQuote ? (
+                      <div className="w-full max-w-[280px] bg-ivory-cream border border-mocha-brown/10 p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] text-mocha-brown relative">
+                        <div className="absolute inset-3 border border-mocha-brown/5 rounded" />
+                        <p className="text-[13px] font-serif italic font-light leading-relaxed">
+                          {lang === 'ar' ? selectedPost.quoteTextAr : selectedPost.quoteText}
+                        </p>
                       </div>
-                    )}
-
-                    {/* Story phone frame mockup */}
-                    {selectedPost.type === 'story' && selectedPost.storyDetails && (
-                      <div className="w-[180px] h-[320px] bg-mocha-brown border-[3px] border-mocha-brown rounded-[16px] shadow-lg overflow-hidden relative flex flex-col justify-between p-4">
-                        <div className="absolute inset-0 z-0 opacity-40">
-                          <Image
-                            src={selectedPost.storyDetails.bgImage}
-                            alt="story background"
-                            fill
-                            sizes="180px"
-                            className="object-cover"
-                          />
-                        </div>
-                        {/* Story Top bar */}
-                        <div className="relative z-10 flex justify-between items-center w-full">
-                          <div className="flex items-center gap-1.5">
-                            <div className="w-5 h-5 rounded-full bg-ivory-cream border border-mocha-brown/10 overflow-hidden relative flex items-center justify-center p-0.5">
-                              <ValleyRoseLogo size="custom" className="w-full h-full" color="black" />
-                            </div>
-                            <span className="text-[6px] font-semibold text-ivory-cream tracking-wide">vallyrose</span>
-                          </div>
-                          <span className="text-[5px] text-ivory-cream/60">3h</span>
-                        </div>
-
-                        {/* Story content text centered */}
-                        <div className="relative z-10 flex-1 flex items-center justify-center text-center px-2">
-                          <p className="font-serif text-[10px] text-ivory-cream italic leading-relaxed">
-                            {lang === 'ar' ? selectedPost.storyDetails.textAr : selectedPost.storyDetails.text}
-                          </p>
-                        </div>
-
-                        {/* Story Bottom swipe indicator */}
-                        <div className="relative z-10 flex flex-col items-center gap-0.5">
-                          <span className="text-[5px] text-ivory-cream uppercase tracking-widest font-mono">Swipe Up</span>
-                          <div className="w-[10px] h-[1px] bg-ivory-cream" />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Care list text frame */}
-                    {selectedPost.id === 'floral-tips' && (
-                      <div className="w-full max-w-[280px] bg-ivory-cream border border-mocha-brown/10 p-5 rounded font-sans text-left flex flex-col gap-4 text-mocha-brown">
-                        <span className="font-serif text-sm italic font-light border-b border-mocha-brown/5 pb-2">Care Specimen</span>
-                        <div className="flex flex-col gap-3">
-                          {(lang === 'ar' ? selectedPost.careListAr : selectedPost.careList)?.map((tip, tIdx) => (
-                            <p key={tIdx} className="text-[10px] font-light leading-relaxed">
-                              {tip}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Testimonial Quote frame */}
-                    {selectedPost.id === 'quote-post' && selectedPost.quoteText && (
-                      <div className="w-full max-w-[280px] bg-ivory-cream border border-mocha-brown/10 p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] text-mocha-brown">
-                        <span className="text-[14px] font-serif italic font-light leading-relaxed">
-                          {selectedPost.quoteText}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Standard Feed mockup with logo centered */}
-                    {selectedPost.type === 'feed' && selectedPost.id === 'behind-scenes' && (
-                      <div className="w-[220px] aspect-square bg-ivory-cream border border-mocha-brown/10 rounded overflow-hidden relative flex items-center justify-center p-4">
+                    ) : (
+                      <div className="w-[240px] aspect-square relative bg-ivory-cream border border-mocha-brown/10 rounded overflow-hidden shadow-lg">
                         <Image
-                          src={selectedPost.thumbnail}
-                          alt="Feed sample"
+                          src={selectedPost.image}
+                          alt="Feed visualizer"
                           fill
-                          sizes="220px"
-                          className="object-cover opacity-75"
+                          sizes="240px"
+                          className="object-cover"
                         />
-                      </div>
-                    )}
-
-                    {/* Thank You solid black frame */}
-                    {selectedPost.id === 'social-thank-you' && (
-                      <div className="w-[200px] h-[200px] bg-mocha-brown rounded flex items-center justify-center border border-ivory-cream/10 p-4">
-                        <ValleyRoseLogo size="sm" color="white" />
                       </div>
                     )}
                   </div>
 
-                  {/* Specifications details list */}
+                  {/* Layout Specs */}
                   <div className="flex flex-col gap-4 border-t border-mocha-brown/10 pt-6">
                     <h4 className="font-serif text-base text-mocha-brown font-light italic">
                       {lang === 'ar' ? 'مواصفات التخطيط والتنسيق' : 'Layout Specifications'}
@@ -520,8 +417,8 @@ export default function SocialMediaRevamp() {
 
                 {/* Footer Action */}
                 <div className="border-t border-mocha-brown/10 pt-4 mt-6 flex justify-between items-center text-[10px] font-mono text-taupe">
-                  <span>SPECIFICATION MANUAL</span>
-                  <span>PAGE: {selectedPost.id.toUpperCase()}</span>
+                  <span>VALLEY ROSE SOCIAL IDENTITY</span>
+                  <span>ID: {selectedPost.id.toUpperCase()}</span>
                 </div>
               </motion.div>
             </div>
