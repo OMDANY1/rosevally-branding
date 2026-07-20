@@ -11,7 +11,7 @@ export default function Cover() {
   return (
     <section
       id="chapter-cover"
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-ivory-cream museum-grid"
+      className="relative min-h-[75svh] flex items-center justify-center overflow-hidden bg-ivory-cream museum-grid"
     >
       {/* Background Subtle Silhouette */}
       <div className="absolute inset-0 z-0 opacity-15 pointer-events-none flex items-center justify-center">
@@ -22,7 +22,7 @@ export default function Cover() {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col items-center justify-between min-h-[70vh] text-center pt-24 pb-12">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col items-center justify-between min-h-[50vh] text-center pt-24 pb-12">
         {/* Top Header info */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
