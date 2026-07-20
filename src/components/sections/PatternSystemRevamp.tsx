@@ -14,12 +14,10 @@ interface PatternItem {
   descAr: string;
   density: string;
   densityAr: string;
-  svgBackground: string;
-  svgViewBox: string;
-  svgContent: React.ReactNode;
+  patternDef: React.ReactNode; // SVG <pattern> definition
   appliedAsset: string;
   appliedAssetAr: string;
-  appliedMockup: React.ReactNode;
+  appliedMockup: React.ReactNode; // Visual mockup representation
 }
 
 export default function PatternSystemRevamp() {
@@ -31,70 +29,62 @@ export default function PatternSystemRevamp() {
       id: "hero",
       name: "Hero Pattern",
       nameAr: "النمط الأساسي (البطل)",
-      desc: "An organic flowing pattern composed of winding tide lines and stylized petals wrapping around central rose silhouettes. Designed to serve as the signature surface asset for large-scale packaging boxes.",
-      descAr: "نمط عضوي منساب يتكون من خطوط التموجات الساحلية وبتلات الورد الملتفة حول ظلال البراعم المركزية. مصمم ليكون العنصر السطحي المميز لصناديق الهدايا الكبيرة.",
-      density: "High Density / Statement asset",
-      densityAr: "كثافة عالية / عنصر بيان فني",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 60 60",
-      svgContent: (
-        <>
-          <path d="M 0 30 Q 15 15 30 30 Q 45 45 60 30" stroke="#D9B4B7" strokeWidth="0.8" fill="none" />
-          <path d="M 0 10 Q 15 -5 30 10 Q 45 25 60 10" stroke="#D9B4B7" strokeWidth="0.8" fill="none" opacity="0.5" />
-          <path d="M 0 50 Q 15 35 30 50 Q 45 65 60 50" stroke="#D9B4B7" strokeWidth="0.8" fill="none" opacity="0.5" />
-          <circle cx="30" cy="30" r="4" fill="#D9B4B7" opacity="0.7" />
-          <path d="M 27 27 C 27 23, 33 23, 33 27 Z" fill="#D9B4B7" opacity="0.8" />
-        </>
+      desc: "A bold, fashion-forward composition of interlocking rose petal outlines and flowing stem geometries. It stands as the chief surface identity asset for signature packaging, featuring clean, hand-illustrated weight and posture.",
+      descAr: "تكوين جريء ومواكب للموضة من خطوط بتلات الورد المتداخلة وهندسة السيقان المنسابة. يمثل عنصر الهوية البصرية السطحية الأساسية للتغليف المتميز.",
+      density: "Bold Statement / Main Box Wraps",
+      densityAr: "تعبير جريء / كسوة الصناديق الأساسية",
+      patternDef: (
+        <pattern id="pattern-hero" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 0 30 C 15 10, 30 10, 30 30 C 30 50, 45 50, 60 30" stroke="#D9B4B7" strokeWidth="1.5" fill="none" />
+          <path d="M 0 10 C 15 -10, 30 -10, 30 10 C 30 30, 45 30, 60 10" stroke="#D9B4B7" strokeWidth="1" fill="none" opacity="0.4" />
+          <path d="M 0 50 C 15 30, 30 30, 30 50 C 30 70, 45 70, 60 50" stroke="#D9B4B7" strokeWidth="1" fill="none" opacity="0.4" />
+          {/* Stylized organic petal shape */}
+          <path d="M 30 30 C 25 20, 35 15, 30 10 C 25 15, 35 20, 30 30 Z" fill="#D9B4B7" opacity="0.75" />
+        </pattern>
       ),
-      appliedAsset: "Signature Luxury Gift Box Wrap",
-      appliedAssetAr: "كسوة صندوق الهدايا الفاخر الأساسي",
+      appliedAsset: "Bespoke Outer Gift Box wrap",
+      appliedAssetAr: "الكسوة الخارجية لصناديق الهدايا الفاخرة",
       appliedMockup: (
-        <div className="relative w-48 h-48 bg-blush-pink rounded-xl flex items-center justify-center shadow-lg border border-mocha-brown/5 overflow-hidden">
-          {/* Pattern overlay */}
-          <div className="absolute inset-0 opacity-20" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 60 60'%3E%3Cpath d='M 0 30 Q 15 15 30 30 Q 45 45 60 30' stroke='%236B4E42' stroke-width='1.2' fill='none'/%3E%3Ccircle cx='30' cy='30' r='4' fill='%236B4E42'/%3E%3C/svg%3E")`,
-            backgroundSize: '30px 30px'
+        <div className="relative w-52 h-52 bg-blush-pink rounded-2xl flex items-center justify-center shadow-xl border border-mocha-brown/5 overflow-hidden">
+          <div className="absolute inset-0 opacity-25" style={{ 
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 60 60'%3E%3Cpath d='M 0 30 C 15 10, 30 10, 30 30 C 30 50, 45 50, 60 30' stroke='%236B4E42' stroke-width='2' fill='none'/%3E%3Cpath d='M 30 30 C 25 20, 35 15, 30 10 C 25 15, 35 20, 30 30 Z' fill='%236B4E42'/%3E%3C/svg%3E")`,
+            backgroundSize: '40px 40px'
           }} />
-          <div className="relative z-10 bg-ivory-cream/95 p-4 rounded text-center border border-mocha-brown/10 text-mocha-brown max-w-[120px]">
-            <span className="font-serif text-[10px] tracking-widest uppercase block">Valley Rose</span>
-            <div className="w-8 h-[1px] bg-rose-gold/50 my-1.5 mx-auto" />
-            <span className="text-[6px] tracking-wider uppercase block">Gift Box</span>
+          <div className="relative z-10 bg-ivory-cream/95 p-5 rounded-lg text-center border border-mocha-brown/10 text-mocha-brown shadow-lg max-w-[130px]">
+            <ValleyRoseLogo size="custom" className="w-[80px] h-[26px] mx-auto mb-2" color="black" />
+            <div className="w-10 h-[0.5px] bg-rose-gold/40 my-1 mx-auto" />
+            <span className="text-[5px] tracking-widest uppercase block opacity-60">GIFT BOX</span>
           </div>
         </div>
       )
     },
     {
-      id: "medium-density",
-      name: "Medium Density Pattern",
+      id: "medium",
+      name: "Medium Pattern",
       nameAr: "النمط متوسط الكثافة",
-      desc: "Concentric arches and leaf tips arranged in a structured grid. It balances organic flow with architectural Swiss alignment, representing Qatif's palm geometries.",
-      descAr: "أقواس دائرية متداخلة ورؤوس أوراق مرتبة في شبكة هندسية. يوازن بين الانسيابية العضوية والتنسيق المعماري، محاكياً سعف النخيل الهندسي بالقطيف.",
-      density: "Medium Density / Collateral background",
-      densityAr: "كثافة متوسطة / خلفية المطبوعات",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 40 40",
-      svgContent: (
-        <>
-          <path d="M 20 10 A 10 10 0 0 0 10 20 L 30 20 A 10 10 0 0 0 20 10 Z" stroke="#E9C5C6" strokeWidth="0.8" fill="none" />
-          <path d="M 20 20 L 20 38" stroke="#E9C5C6" strokeWidth="0.6" strokeDasharray="2,2" />
-          <path d="M 12 28 C 16 28, 20 24, 20 20 C 20 24, 24 28, 28 28 Z" fill="#E9C5C6" opacity="0.6" />
-        </>
+      desc: "Curving stem structures and concentric arches forming an elegant wave grid. It references the natural architecture of plant growth, balancing organic forms with Swiss structural precision.",
+      descAr: "هياكل السيقان المنحنية والأقواس المتداخلة التي تشكل شبكة تموج أنيقة. تحاكي الهندسة الطبيعية لنمو النباتات وتوازن الشكل العضوي بالدقة السويسرية.",
+      density: "Balanced Grid / Folder Backdrops",
+      densityAr: "شبكة متوازنة / خلفيات مغلفات العرض",
+      patternDef: (
+        <pattern id="pattern-medium" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 20 5 A 15 15 0 0 0 5 20 L 35 20 A 15 15 0 0 0 20 5 Z" stroke="#E9C5C6" strokeWidth="1.2" fill="none" />
+          <path d="M 20 20 C 15 28, 25 32, 20 40" stroke="#E9C5C6" strokeWidth="0.8" fill="none" opacity="0.6" />
+          <circle cx="20" cy="5" r="2.5" fill="#D9A28C" />
+        </pattern>
       ),
-      appliedAsset: "Wedding Ceremony Invitation Folders",
-      appliedAssetAr: "مجلدات دعوة حفل الزفاف المخصصة",
+      appliedAsset: "Client Keepsake Presentation Folders",
+      appliedAssetAr: "مجلدات عرض هدايا ومراسلات العملاء",
       appliedMockup: (
-        <div className="relative w-48 h-48 bg-ivory-cream rounded-xl flex items-center justify-center shadow-lg border border-mocha-brown/15 overflow-hidden">
+        <div className="relative w-52 h-52 bg-ivory-cream rounded-2xl flex items-center justify-center shadow-xl border border-mocha-brown/15 overflow-hidden">
           <div className="absolute inset-0 opacity-15" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 40 40'%3E%3Cpath d='M 20 10 A 10 10 0 0 0 10 20 L 30 20 A 10 10 0 0 0 20 10 Z' stroke='%236B4E42' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
-            backgroundSize: '20px 20px'
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 40 40'%3E%3Cpath d='M 20 5 A 15 15 0 0 0 5 20 L 35 20 A 15 15 0 0 0 20 5 Z' stroke='%236B4E42' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='20' cy='5' r='2.5' fill='%236B4E42'/%3E%3C/svg%3E")`,
+            backgroundSize: '30px 30px'
           }} />
-          <div className="relative z-10 w-28 h-36 bg-ivory-cream border border-mocha-brown/10 rounded flex flex-col justify-between p-3 text-mocha-brown shadow-md">
-            <span className="font-serif text-[8px] italic">Invitation Suite</span>
-            <div className="w-full h-[1px] bg-mocha-brown/10 my-1" />
-            <div className="text-[5px] flex flex-col gap-1 opacity-70">
-              <span>NOOR & FAISAL</span>
-              <span>20 . 08 . 2026</span>
-            </div>
+          <div className="relative z-10 w-32 h-40 bg-ivory-cream border border-mocha-brown/10 rounded flex flex-col justify-between p-4 text-mocha-brown shadow-lg">
+            <span className="font-serif text-[8px] tracking-wider uppercase font-semibold">Valley Rose</span>
+            <div className="w-full h-[0.5px] bg-mocha-brown/10 my-1" />
+            <span className="text-[5px] text-taupe leading-relaxed">BRAND SPECIFICATION FOLDER</span>
           </div>
         </div>
       )
@@ -103,111 +93,62 @@ export default function PatternSystemRevamp() {
       id: "micro",
       name: "Micro Pattern",
       nameAr: "النمط الدقيق (المايكرو)",
-      desc: "Delicate 4-pointed stars and thin vertical capsule boundaries repeating across a tight matrix. Designed to act as an unboxing texture for secondary letterheads and envelop liners.",
-      descAr: "نجوم رباعية رقيقة وحدود كبسولة رأسية متكررة في مصفوفة ضيقة. مصممة لتكون خلفية رقيقة لبطانات المغاريف وخطابات المراسلات الفاخرة.",
-      density: "Low Density / Micro details",
-      densityAr: "كثافة منخفضة / تفاصيل دقيقة للغاية",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 20 20",
-      svgContent: (
-        <>
-          <line x1="10" y1="2" x2="10" y2="18" stroke="#E8DCCB" strokeWidth="0.5" />
-          <line x1="2" y1="10" x2="18" y2="10" stroke="#E8DCCB" strokeWidth="0.5" />
-          <path d="M 10 7 L 11.5 10 L 10 13 L 8.5 10 Z" fill="#D9A28C" />
-        </>
+      desc: "Delicate clusters of small four-pointed stars and thin vertical capsule coordinates. Designed as a micro-textural accent, ideal for envelope liners and the inner faces of stationery folders.",
+      descAr: "تجمعات دقيقة من النجوم رباعية الرؤوس الصغيرة وإحداثيات الكبسولة الرأسية. مصمم كعنصر ملمس مايكرو ناعم لبطانات أظرف الرسائل.",
+      density: "Low Density / Micro-textures",
+      densityAr: "كثافة خفيفة / ملمس مايكرو دقيق",
+      patternDef: (
+        <pattern id="pattern-micro" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 10 5 L 10 15" stroke="#E8DCCB" strokeWidth="0.6" />
+          <path d="M 10 8 L 11.5 10 L 10 12 L 8.5 10 Z" fill="#D9A28C" />
+          <circle cx="2" cy="2" r="0.5" fill="#B8A89A" opacity="0.4" />
+        </pattern>
       ),
-      appliedAsset: "Corporate Letterhead and Laid Envelopes",
-      appliedAssetAr: "الخطابات الرسمية والمغاريف المبطنة",
+      appliedAsset: "Deluxe envelope inner lining sheets",
+      appliedAssetAr: "بطانات المغاريف الورقية المبطنة الفاخرة",
       appliedMockup: (
-        <div className="relative w-48 h-48 bg-warm-beige/30 rounded-xl flex items-center justify-center shadow-lg border border-mocha-brown/5 overflow-hidden">
+        <div className="relative w-52 h-52 bg-warm-beige/20 rounded-2xl flex items-center justify-center shadow-xl border border-mocha-brown/5 overflow-hidden">
           <div className="absolute inset-0 opacity-25" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 20 20'%3E%3Cpath d='M 10 7 L 11.5 10 L 10 13 L 8.5 10 Z' fill='%23D9A28C'/%3E%3C/svg%3E")`,
-            backgroundSize: '15px 15px'
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 20 20'%3E%3Cpath d='M 10 8 L 11.5 10 L 10 12 L 8.5 10 Z' fill='%23D9A28C'/%3E%3C/svg%3E")`,
+            backgroundSize: '16px 16px'
           }} />
-          <div className="relative z-10 w-36 h-24 bg-ivory-cream border border-mocha-brown/10 shadow flex flex-col justify-between p-3 text-mocha-brown">
+          <div className="relative z-10 w-40 h-28 bg-ivory-cream border border-mocha-brown/10 shadow-md flex flex-col justify-between p-3.5 text-mocha-brown">
             <div className="flex justify-between items-center">
-              <span className="font-serif text-[6px] tracking-widest uppercase">Vally Rose</span>
-              <span className="text-[4px] opacity-60">CORRESPONDENCE</span>
+              <span className="font-serif text-[6px] tracking-widest uppercase opacity-75">Vally Rose</span>
+              <span className="text-[4px] font-mono opacity-50">STATIONERY SPEC</span>
             </div>
-            <div className="w-12 h-[1px] bg-rose-gold/40" />
-            <div className="w-full h-8 border border-dashed border-mocha-brown/5 bg-warm-beige/10" />
+            <div className="w-full h-8 border border-dashed border-mocha-brown/10 bg-warm-beige/5 rounded" />
           </div>
-        </div>
-      )
-    },
-    {
-      id: "border",
-      name: "Border Pattern",
-      nameAr: "نمط الحواف والحدود",
-      desc: "A linear repeating chain of stylized leaves and capsule contours, used along the margins of letterheads, seating plans, and invitation suites to add structure.",
-      descAr: "سلسلة خطية متكررة من الأوراق المبسطة والكبسولات الهندسية. تُستخدم على حواف المراسلات ومخططات الجلوس وبطاقات الدعوة لإضافة مظهر هيكلي أنيق.",
-      density: "Linear / Border frames",
-      densityAr: "خطي / إطارات الحدود والحواف",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 50 10",
-      svgContent: (
-        <>
-          <line x1="0" y1="5" x2="50" y2="5" stroke="#B8A89A" strokeWidth="0.5" />
-          <rect x="5" y="2" width="6" height="6" rx="3" stroke="#B8A89A" strokeWidth="0.8" fill="none" />
-          <path d="M 8 2 C 7 0, 9 0, 8 2" stroke="#B8A89A" strokeWidth="0.5" />
-          <rect x="25" y="2" width="6" height="6" rx="3" stroke="#B8A89A" strokeWidth="0.8" fill="none" />
-          <rect x="45" y="2" width="6" height="6" rx="3" stroke="#B8A89A" strokeWidth="0.8" fill="none" />
-        </>
-      ),
-      appliedAsset: "Dinner Menu Cards & Ceremony Signage",
-      appliedAssetAr: "قوائم الطعام ولافتات حفل الاستقبال",
-      appliedMockup: (
-        <div className="relative w-48 h-48 bg-ivory-cream rounded-xl flex flex-col justify-between p-4 shadow-lg border border-mocha-brown/5 text-mocha-brown font-serif select-none">
-          {/* Border pattern repeat simulation top/bottom */}
-          <div className="h-2 w-full opacity-60" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='6' viewBox='0 0 50 10'%3E%3Crect x='5' y='2' width='6' height='6' rx='3' stroke='%236B4E42' stroke-width='1.2' fill='none'/%3E%3C/svg%3E")`,
-            backgroundSize: '30px 6px'
-          }} />
-          <div className="flex-1 flex flex-col items-center justify-center text-center gap-1.5 py-4">
-            <span className="font-serif text-[10px] italic">Menu</span>
-            <div className="w-6 h-[0.5px] bg-rose-gold/50" />
-            <div className="flex flex-col gap-0.5 text-[5px] uppercase font-sans tracking-widest opacity-70">
-              <span>Citrus Rose Starter</span>
-              <span>Artesian Beef Fillet</span>
-              <span>Saffron Rose Dessert</span>
-            </div>
-          </div>
-          <div className="h-2 w-full opacity-60" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='6' viewBox='0 0 50 10'%3E%3Crect x='5' y='2' width='6' height='6' rx='3' stroke='%236B4E42' stroke-width='1.2' fill='none'/%3E%3C/svg%3E")`,
-            backgroundSize: '30px 6px'
-          }} />
         </div>
       )
     },
     {
       id: "ribbon",
       name: "Ribbon Pattern",
-      nameAr: "نمط أشرطة الحرير والكتان",
-      desc: "Parallel tide wave lines mirroring the silent currents of the Saihat coast. Applies elegantly along silk or cotton wrapping ribbons.",
-      descAr: "خطوط تموجات متوازية تحاكي حركة التيارات الهادئة لسواحل سيهات. يُطبع بنقوش رقيقة على أشرطة الحرير والكتان لتغليف باقات الهدايا.",
-      density: "Linear / Ribbon repeat",
-      densityAr: "خطي / تكرار الأشرطة",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 40 20",
-      svgContent: (
-        <>
-          <path d="M 0 5 Q 10 15 20 5 Q 30 -5 40 5" stroke="#D9A28C" strokeWidth="0.8" fill="none" />
-          <path d="M 0 15 Q 10 25 20 15 Q 30 5 40 15" stroke="#D9A28C" strokeWidth="0.8" fill="none" opacity="0.6" />
-        </>
+      nameAr: "نمط الأشرطة المنسوجة",
+      desc: "Parallel tide wave lines mirroring the flowing waters of coastal springs. Instills continuous graphic elegance along silk or unbleached woven cotton ribbons.",
+      descAr: "خطوط تموجات متوازية تحاكي تدفق قنوات المياه الهادئة. تضفي انسيابية مستمرة ونقوشاً دقيقة على أشرطة الحرير والقطن الطبيعي المنسوج.",
+      density: "Linear / Ribbon continuous wrap",
+      densityAr: "خطي / تكرار أشرطة تغليف الباقات",
+      patternDef: (
+        <pattern id="pattern-ribbon" width="40" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 0 5 Q 10 15, 20 5 Q 30 -5, 40 5" stroke="#D9A28C" strokeWidth="1.2" fill="none" />
+          <path d="M 0 15 Q 10 25, 20 15 Q 30 5, 40 15" stroke="#D9A28C" strokeWidth="0.8" fill="none" opacity="0.5" />
+        </pattern>
       ),
-      appliedAsset: "Woven Ribbon and Fabric Ties",
-      appliedAssetAr: "أشرطة الحرير المنسوجة للتغليف الفاخر",
+      appliedAsset: "Woven Cotton Flower Wrapping Ribbons",
+      appliedAssetAr: "أشرطة الكتان المنسوجة لتغليف الباقات الفاخرة",
       appliedMockup: (
-        <div className="relative w-48 h-48 bg-warm-beige/20 rounded-xl flex flex-col justify-center items-center gap-4 shadow-lg border border-mocha-brown/5 overflow-hidden">
-          {/* Ribbon block */}
-          <div className="w-full h-8 bg-mocha-brown relative flex items-center justify-center">
-            <div className="absolute inset-0 opacity-20" style={{ 
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 40 20'%3E%3Cpath d='M 0 5 Q 10 15 20 5 Q 30 -5 40 5' stroke='%23F7F1E9' stroke-width='1.2' fill='none'/%3E%3C/svg%3E")`,
+        <div className="relative w-52 h-52 bg-warm-beige/30 rounded-2xl flex flex-col justify-center items-center gap-5 shadow-xl border border-mocha-brown/5 overflow-hidden">
+          {/* Ribbon wrap simulation */}
+          <div className="w-full h-10 bg-mocha-brown relative flex items-center justify-center border-y border-rose-gold/10">
+            <div className="absolute inset-0 opacity-25" style={{ 
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 40 20'%3E%3Cpath d='M 0 5 Q 10 15, 20 5 Q 30 -5, 40 5' stroke='%23F7F1E9' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
               backgroundSize: '20px 10px'
             }} />
-            <span className="relative z-10 text-[6px] tracking-[0.3em] uppercase text-ivory-cream font-mono">Vally Rose</span>
+            <span className="relative z-10 text-[7px] tracking-[0.35em] uppercase text-ivory-cream font-mono">Vally Rose</span>
           </div>
-          <span className="text-[8px] font-sans text-taupe uppercase tracking-widest">Ribbon Specimen</span>
+          <span className="text-[8px] font-sans text-taupe uppercase tracking-wider">Ribbon Specimen</span>
         </div>
       )
     },
@@ -215,32 +156,101 @@ export default function PatternSystemRevamp() {
       id: "tissue",
       name: "Tissue Pattern",
       nameAr: "نمط مناديل التغليف الرقيقة",
-      desc: "Delicate, overlapping silhouettes of single rose petals tossed at varying angles. It features a transparent, organic feeling tailored for wrapping tissue wraps.",
-      descAr: "ظلال بالغة الدقة والرقة لبتلات ورد متناثرة بزوايا واتجاهات عشوائية متباينة. يضفي شعوراً بالشفافية والنعومة لورق المناديل الداخلي لتغليف الزهور.",
-      density: "Scatter / Interlocking petals",
-      densityAr: "تشتت عشوائي / بتلات متداخلة",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 40 40",
-      svgContent: (
-        <>
-          <path d="M 10 10 C 10 5, 20 5, 20 10 C 20 15, 10 15, 10 10 Z" fill="#E9C5C6" opacity="0.3" transform="rotate(15 15 10)" />
-          <path d="M 28 25 C 28 20, 38 20, 38 25 C 38 30, 28 30, 28 25 Z" fill="#E9C5C6" opacity="0.3" transform="rotate(-30 33 25)" />
-          <path d="M 5 30 C 5 27, 10 27, 10 30 C 10 33, 5 33, 5 30 Z" fill="#E9C5C6" opacity="0.2" transform="rotate(45 7.5 30)" />
-        </>
+      desc: "Delicate scattered organic rose petal contours overlayed at soft angles. Designed with transparent, airy qualities for thin acid-free wrapping tissue sheets.",
+      descAr: "ظلال بتلات ورد عضوية متناثرة بزوايا واتجاهات ناعمة متداخلة. مصممة بخصائص رقيقة تضفي جودة ملموسة لورق المناديل الداخلي للتغليف.",
+      density: "Scatter / Interlocking overlay",
+      densityAr: "تشتت / بتلات ناعمة متداخلة",
+      patternDef: (
+        <pattern id="pattern-tissue" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 12 12 C 12 6, 22 6, 22 12 C 22 18, 12 18, 12 12 Z" fill="#E9C5C6" opacity="0.4" transform="rotate(15 17 12)" />
+          <path d="M 30 28 C 30 22, 40 22, 40 28 C 40 34, 30 34, 30 28 Z" fill="#E9C5C6" opacity="0.4" transform="rotate(-30 35 28)" />
+          <circle cx="5" cy="30" r="1.5" fill="#D9A28C" opacity="0.3" />
+        </pattern>
       ),
-      appliedAsset: "Textured Wrapping Tissue Paper",
-      appliedAssetAr: "ورق مناديل الحشو الداخلي الفاخر",
+      appliedAsset: "Acid-Free Wrapping Tissue paper sheets",
+      appliedAssetAr: "ورق مناديل الحشو الداخلي الفاخر المعطر",
       appliedMockup: (
-        <div className="relative w-48 h-48 bg-ivory-cream rounded-xl flex items-center justify-center shadow-lg border border-mocha-brown/5 overflow-hidden">
+        <div className="relative w-52 h-52 bg-ivory-cream rounded-2xl flex items-center justify-center shadow-xl border border-mocha-brown/5 overflow-hidden">
           <div className="absolute inset-0 opacity-40" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 40 40'%3E%3Cpath d='M 10 10 C 10 5, 20 5, 20 10 C 20 15, 10 15, 10 10 Z' fill='%23E9C5C6'/%3E%3C/svg%3E")`,
-            backgroundSize: '25px 25px'
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 40 40'%3E%3Cpath d='M 12 12 C 12 6, 22 6, 22 12 C 22 18, 12 18, 12 12 Z' fill='%23E9C5C6'/%3E%3C/svg%3E")`,
+            backgroundSize: '24px 24px'
           }} />
-          <div className="relative z-10 p-3 bg-mocha-brown text-ivory-cream rounded flex items-center gap-2 shadow-2xl">
-            <div className="w-6 h-6 border border-ivory-cream/20 flex items-center justify-center p-0.5">
-              <ValleyRoseLogo size="custom" className="w-full h-full" color="white" />
+          <div className="relative z-10 p-3.5 bg-mocha-brown text-ivory-cream rounded-lg flex items-center gap-2.5 shadow-2xl">
+            <ValleyRoseLogo size="custom" className="w-[45px] h-[15px]" color="white" />
+            <div className="w-[1px] h-3 bg-ivory-cream/20" />
+            <span className="font-mono text-[6px] tracking-wider uppercase">Wax Stamp Seal</span>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: "border",
+      name: "Border Pattern",
+      nameAr: "نمط الحواف والحدود الخطية",
+      desc: "A linear repeating chain of stylized leaves and capsule contours, used along the margins of letterheads, envelopes, and ceremony programs to frame contents with brand structure.",
+      descAr: "سلسلة خطية متكررة من الأوراق المبسطة وانحناءات الكبسولة. تُستخدم على حواف المطبوعات والبرامج الاحتفالية لتأطير المحتويات بهوية العلامة.",
+      density: "Linear / Border rules",
+      densityAr: "خطي / إطارات الحدود والحواف",
+      patternDef: (
+        <pattern id="pattern-border" width="50" height="10" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="5" x2="50" y2="5" stroke="#B8A89A" strokeWidth="0.6" />
+          <rect x="5" y="2" width="6" height="6" rx="3" stroke="#B8A89A" strokeWidth="1" fill="none" />
+          <rect x="25" y="2" width="6" height="6" rx="3" stroke="#B8A89A" strokeWidth="1" fill="none" />
+          <rect x="45" y="2" width="6" height="6" rx="3" stroke="#B8A89A" strokeWidth="1" fill="none" />
+        </pattern>
+      ),
+      appliedAsset: "Dinner Menu Card Margins & Stationery Borders",
+      appliedAssetAr: "هوامش بطاقات العشاء والقرطاسية الفاخرة",
+      appliedMockup: (
+        <div className="relative w-52 h-52 bg-ivory-cream rounded-2xl flex flex-col justify-between p-5 shadow-xl border border-mocha-brown/5 text-mocha-brown font-serif select-none">
+          {/* Top border pattern */}
+          <div className="h-2 w-full opacity-60" style={{ 
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='6' viewBox='0 0 50 10'%3E%3Crect x='5' y='2' width='6' height='6' rx='3' stroke='%236B4E42' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: '30px 6px'
+          }} />
+          <div className="flex-1 flex flex-col items-center justify-center text-center gap-1.5 py-4">
+            <span className="font-serif text-[11px] italic">Dinner Menu</span>
+            <div className="w-8 h-[0.5px] bg-rose-gold/50" />
+            <div className="flex flex-col gap-0.5 text-[5px] uppercase font-sans tracking-widest opacity-70">
+              <span>Citrus Rose Starter</span>
+              <span>Artesian Beef Fillet</span>
+              <span>Saffron Rose Dessert</span>
             </div>
-            <span className="font-mono text-[7px] tracking-wider uppercase">Wax Sealed</span>
+          </div>
+          {/* Bottom border pattern */}
+          <div className="h-2 w-full opacity-60" style={{ 
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='6' viewBox='0 0 50 10'%3E%3Crect x='5' y='2' width='6' height='6' rx='3' stroke='%236B4E42' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: '30px 6px'
+          }} />
+        </div>
+      )
+    },
+    {
+      id: "packaging",
+      name: "Packaging Pattern",
+      nameAr: "نمط كراتين التعبئة الكبيرة",
+      desc: "Bold, large-scale abstract floral lines that wrap around gift box corners and bag structures, representing the brand's identity system in its most confident, fashion-inspired format.",
+      descAr: "خطوط زهور تجريدية كبيرة وجريئة تلتف حول زوايا صناديق الهدايا وهياكل الحقائب، لتمثل هوية العلامة التجارية بأسلوب عصري واثق ومرئي.",
+      density: "High Density / Large Scale print",
+      densityAr: "كثافة عالية / طباعة بمقاييس كبيرة",
+      patternDef: (
+        <pattern id="pattern-packaging" width="80" height="80" patternUnits="userSpaceOnUse">
+          <ellipse cx="40" cy="40" rx="30" ry="38" stroke="#D9B4B7" strokeWidth="1.5" fill="none" />
+          <ellipse cx="40" cy="40" rx="15" ry="25" stroke="#D9B4B7" strokeWidth="1" fill="none" opacity="0.5" />
+          <path d="M 40 10 C 35 2, 45 2, 40 10" stroke="#D9B4B7" strokeWidth="1.2" fill="none" />
+          <line x1="0" y1="40" x2="80" y2="40" stroke="#D9B4B7" strokeWidth="0.8" opacity="0.3" />
+        </pattern>
+      ),
+      appliedAsset: "Structured Shopping Bag Panel details",
+      appliedAssetAr: "جوانب حقائب التسوق والكراتين الخارجية",
+      appliedMockup: (
+        <div className="relative w-52 h-52 bg-ivory-cream rounded-2xl flex flex-col justify-end p-5 shadow-xl border border-mocha-brown/5 overflow-hidden">
+          <div className="absolute inset-0 opacity-20" style={{ 
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 80 80'%3E%3Cellipse cx='40' cy='40' rx='30' ry='38' stroke='%236B4E42' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: '24px 24px'
+          }} />
+          <div className="relative z-10 w-full bg-mocha-brown text-ivory-cream py-2.5 text-center rounded-lg flex flex-col items-center justify-center gap-1 shadow-md">
+            <ValleyRoseLogo size="custom" className="w-[70px] h-[22px]" color="white" />
           </div>
         </div>
       )
@@ -249,65 +259,27 @@ export default function PatternSystemRevamp() {
       id: "monogram",
       name: "Monogram Pattern",
       nameAr: "النمط الرمزي (المونوغرام)",
-      desc: "A diagonal repeating tessellation of the master oval capsule and inner rosebud monogram. Establishes strong visual branding across bag panels and gift sleeves.",
-      descAr: "شكل متكرر مائل لرمز الكبسولة البيضاوية وبراعم الورد الداخلية. يرسخ الهوية البصرية بقوة على جوانب الحقائب وأكمام علب الهدايا الكبيرة.",
-      density: "Grid / Monogram repeat",
-      densityAr: "شبكي / مونوغرام متكرر",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 40 50",
-      svgContent: (
-        <>
-          <rect x="13" y="10" width="14" height="26" rx="7" stroke="#B8A89A" strokeWidth="0.8" fill="none" opacity="0.7" />
-          <circle cx="20" cy="20" r="3" fill="#B8A89A" opacity="0.6" />
-          <line x1="20" y1="23" x2="20" y2="34" stroke="#B8A89A" strokeWidth="0.6" opacity="0.6" />
-        </>
+      desc: "A diagonal repeating tessellation of the master oval capsule and inner rosebud monogram. Establishes strong visual branding across bag panels, letterhead seals, and stationery envelopes.",
+      descAr: "شكل متكرر مائل لرمز الكبسولة البيضاوية وبراعم الورد الداخلية. يرسخ الهوية البصرية بقوة على جوانب الحقائب وأختام المراسلات الفاخرة.",
+      density: "Structured Grid / Monogram Repeat",
+      densityAr: "شبكة هندسية / مونوغرام متكرر",
+      patternDef: (
+        <pattern id="pattern-monogram" width="30" height="40" patternUnits="userSpaceOnUse">
+          <rect x="8" y="5" width="14" height="26" rx="7" stroke="#B8A89A" strokeWidth="1" fill="none" opacity="0.7" />
+          <circle cx="15" cy="15" r="2.5" fill="#B8A89A" opacity="0.6" />
+          <line x1="15" y1="18" x2="15" y2="28" stroke="#B8A89A" strokeWidth="0.8" opacity="0.6" />
+        </pattern>
       ),
-      appliedAsset: "Structured Shopping Bag Panel",
-      appliedAssetAr: "جوانب حقائب التسوق الورقية الفاخرة",
+      appliedAsset: "Structured Shopping Bag Panel & Gift Sleeve",
+      appliedAssetAr: "جوانب حقائب التسوق وأكمام علب الهدايا",
       appliedMockup: (
-        <div className="relative w-48 h-48 bg-ivory-cream rounded-xl flex flex-col justify-end p-4 shadow-lg border border-mocha-brown/5 overflow-hidden">
+        <div className="relative w-52 h-52 bg-ivory-cream rounded-2xl flex flex-col justify-end p-5 shadow-xl border border-mocha-brown/5 overflow-hidden">
           <div className="absolute inset-0 opacity-15" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='20' viewBox='0 0 40 50'%3E%3Crect x='13' y='10' width='14' height='26' rx='7' stroke='%236B4E42' stroke-width='1.2' fill='none'/%3E%3C/svg%3E")`,
-            backgroundSize: '16px 20px'
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='24' viewBox='0 0 30 40'%3E%3Crect x='8' y='5' width='14' height='26' rx='7' stroke='%236B4E42' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: '18px 24px'
           }} />
-          <div className="relative z-10 w-full bg-mocha-brown text-ivory-cream py-2 text-center rounded flex flex-col items-center justify-center gap-1 shadow-md">
-            <span className="font-serif text-[8px] tracking-[0.2em] uppercase">Vally Rose</span>
-            <div className="w-8 h-[0.5px] bg-rose-gold/40" />
-          </div>
-        </div>
-      )
-    },
-    {
-      id: "minimal-line",
-      name: "Minimal Line Pattern",
-      nameAr: "النمط الخطي البسيط",
-      desc: "Parallel thin wavy lines with vertical axis alignment guides. Represents the flowing water springs of Qatif in their purest, most abstract design expression.",
-      descAr: "خطوط متوازية متموجة بالغة الدقة مع خطوط إرشادية رأسية خافتة. تمثل عيون واحات القطيف في أصفى تعبيراتها التصميمية تجريداً وبساطة.",
-      density: "Low Density / Linear details",
-      densityAr: "كثافة منخفضة / تفاصيل خطية نقية",
-      svgBackground: "#F7F1E9",
-      svgViewBox: "0 0 40 40",
-      svgContent: (
-        <>
-          <path d="M 5 0 L 5 40" stroke="#E8DCCB" strokeWidth="0.5" strokeDasharray="3,3" />
-          <path d="M 35 0 L 35 40" stroke="#E8DCCB" strokeWidth="0.5" strokeDasharray="3,3" />
-          <path d="M 0 20 Q 10 10 20 20 Q 30 30 40 20" stroke="#B8A89A" strokeWidth="0.6" fill="none" opacity="0.6" />
-        </>
-      ),
-      appliedAsset: "Keepsake Folders & Customer Cards",
-      appliedAssetAr: "بطاقات الهدايا ومذكرات الشكر",
-      appliedMockup: (
-        <div className="relative w-48 h-48 bg-warm-beige/30 rounded-xl flex items-center justify-center shadow-lg border border-mocha-brown/5 overflow-hidden">
-          <div className="absolute inset-0 opacity-20" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 40 40'%3E%3Cpath d='M 0 20 Q 10 10 20 20 Q 30 30 40 20' stroke='%236B4E42' stroke-width='1.2' fill='none'/%3E%3C/svg%3E")`,
-            backgroundSize: '20px 20px'
-          }} />
-          <div className="relative z-10 w-28 h-28 bg-ivory-cream border border-mocha-brown/10 shadow-lg flex flex-col justify-between p-3 text-mocha-brown text-center">
-            <span className="font-mono text-[5px] uppercase tracking-widest">Note Card</span>
-            <div className="flex-1 flex items-center justify-center p-2">
-              <span className="font-serif text-[7px] italic text-rose-gold">“where happiness flows”</span>
-            </div>
-            <div className="w-4 h-[0.5px] bg-mocha-brown/20 mx-auto" />
+          <div className="relative z-10 w-full bg-mocha-brown text-ivory-cream py-2 text-center rounded-lg flex flex-col items-center justify-center gap-1 shadow-md">
+            <ValleyRoseLogo size="custom" className="w-[60px] h-[20px]" color="white" />
           </div>
         </div>
       )
@@ -327,7 +299,7 @@ export default function PatternSystemRevamp() {
           num="13"
           title="Pattern System"
           titleAr="نظام الأنماط"
-          subtitle="Original Signature Floral Patterns"
+          subtitle="Original Signature Surface Patterns"
           subtitleAr="أنماط زخرفية أصلية مستوحاة من تفاصيل الرمز"
         />
 
@@ -335,7 +307,7 @@ export default function PatternSystemRevamp() {
         <div className="max-w-3xl mb-16 text-sm text-taupe font-sans font-light leading-relaxed">
           <p className={lang === 'ar' ? 'text-right font-ar' : ''}>
             {lang === 'ar'
-              ? 'تتجنب علامتنا الأنماط الزخرفية الصاخبة أو ورق الحائط التقليدي المليء بالتفاصيل الواقعية. بدلاً من ذلك، صممنا نظاماً متكاملاً من الأنماط السطحية المستوحاة مباشرة من انحناءات برعم شعار وادي الورد، وبتلاته المتداخلة، وتدفق مياه واحة القطيف. تُعرض هذه الأنماط بلمسات ناعمة شبه غير مرئية (شفافية بين ٣٪ و ٨٪) لإضافة جودة ملموسة ووقار فني.'
+              ? 'تتجنب علامتنا الأنماط الزخرفية الصاخبة أو ورق الحائط التقليدي المليء بالتفاصيل الواقعية. بدلاً من ذلك، صممنا نظاماً متكاملاً من الأنماط السطحية المنسجمة والمستوحاة مباشرة من انحناءات برعم شعار وادي الورد، وبتلاته المتداخلة، وتدفق مياه واحة القطيف. تُعرض هذه الأنماط بلمسات ناعمة شبه غير مرئية (شفافية بين ٣٪ و ٨٪) لإضافة جودة ملموسة ووقار فني.'
               : 'We reject realistic floral prints, heavy botanical sketches, and traditional wall-coverings. Instead, we have developed a complete signature pattern library derived directly from the organic contours of our master emblem, rose petal geometry, and Qatif water currents. These are applied with silent contrast (3% to 8% opacity) on physical materials, enhancing tactility without creating distraction.'
             }
           </p>
@@ -370,9 +342,11 @@ export default function PatternSystemRevamp() {
                 </div>
                 <div className="w-8 h-8 rounded-full border border-mocha-brown/5 overflow-hidden flex items-center justify-center bg-ivory-cream shrink-0">
                   {/* Small Pattern Swatch preview */}
-                  <svg className="w-full h-full" viewBox={item.svgViewBox}>
-                    <rect width="100%" height="100%" fill={item.svgBackground} />
-                    {item.svgContent}
+                  <svg className="w-full h-full" viewBox="0 0 40 40">
+                    <rect width="100%" height="100%" fill="#F7F1E9" />
+                    {/* Simplified drawing for tiny thumbnail preview */}
+                    <circle cx="20" cy="20" r="12" stroke="#D9B4B7" strokeWidth="1" fill="none" />
+                    <circle cx="20" cy="20" r="4" fill="#D9B4B7" />
                   </svg>
                 </div>
               </button>
@@ -392,19 +366,17 @@ export default function PatternSystemRevamp() {
               >
                 {/* Visual Grid pattern preview */}
                 <div className="relative w-full aspect-[2/1] rounded-xl overflow-hidden border border-mocha-brown/10 bg-ivory-cream">
-                  <div className="absolute inset-0 opacity-40" style={{ 
-                    backgroundImage: `radial-gradient(circle, #6B4E42 0.5px, transparent 0.5px)`,
-                    backgroundSize: '20px 20px'
-                  }} />
-                  <div className="absolute inset-0" style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='${activePatternItem.svgViewBox}'%3E%3Crect width='100%25' height='100%25' fill='%23F7F1E9'/%3E%3Cpath d='M 0 30 Q 15 15 30 30 Q 45 45 60 30' stroke='%236B4E42' stroke-width='0.8' fill='none'/%3E%3C/svg%3E")`,
-                    backgroundSize: '40px 40px',
-                    opacity: 0.15
-                  }} />
+                  {/* SVG Repeating Pattern Display */}
+                  <svg className="absolute inset-0 w-full h-full">
+                    <defs>
+                      {activePatternItem.patternDef}
+                    </defs>
+                    <rect width="100%" height="100%" fill={`url(#pattern-${activePatternItem.id})`} />
+                  </svg>
                   
                   {/* Decorative centered tag */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="px-4 py-2 bg-ivory-cream border border-mocha-brown/10 text-mocha-brown font-mono text-[9px] uppercase tracking-widest shadow-md">
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span className="px-4 py-2 bg-ivory-cream/95 border border-mocha-brown/10 text-mocha-brown font-mono text-[9px] uppercase tracking-widest shadow-md">
                       Seamless Matrix
                     </span>
                   </div>
