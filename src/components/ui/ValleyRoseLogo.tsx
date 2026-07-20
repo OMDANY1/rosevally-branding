@@ -17,10 +17,10 @@ export default function ValleyRoseLogo({
 }: LogoProps) {
   // Map size classes
   const sizeClasses = {
-    sm: 'w-[50px] h-[56px]',
-    md: 'w-[80px] h-[90px]',
-    lg: 'w-[100px] h-[112px]',
-    xl: 'w-[130px] h-[146px]',
+    sm: 'w-[120px] h-[135px]',
+    md: 'w-[160px] h-[180px]',
+    lg: 'w-[200px] h-[225px]',
+    xl: 'w-[280px] h-[315px]',
     custom: 'w-full h-full'
   };
 
@@ -28,12 +28,12 @@ export default function ValleyRoseLogo({
   const logoSrc = isWhite ? '/images/logo-white.png' : '/images/logo-rose-gold.png';
 
   return (
-    <div className={`relative flex items-center justify-center overflow-hidden ${sizeClasses[size]} ${className}`}>
+    <div className={`relative flex items-center justify-center ${sizeClasses[size]} ${className}`}>
       <Image
         src={logoSrc}
         alt="Valley Rose Official Brand Logo"
-        width={200}
-        height={225}
+        width={320}
+        height={360}
         className="w-full h-auto object-contain"
         priority
       />

@@ -54,7 +54,7 @@ export default function Nav() {
             }}
             className="hover:opacity-60 transition-opacity block py-1"
           >
-            <ValleyRoseLogo size="custom" className="w-[60px] h-[20px]" color="black" />
+            <ValleyRoseLogo size="custom" className="w-[72px] h-[24px] md:w-[96px] md:h-[32px] lg:w-[120px] lg:h-[40px]" color="black" />
           </a>
 
           {/* Nav Controls */}
