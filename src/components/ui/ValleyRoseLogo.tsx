@@ -28,12 +28,12 @@ export default function ValleyRoseLogo({
   const logoSrc = isWhite ? '/images/logo-white.png' : '/images/logo-rose-gold.png';
 
   return (
-    <div className={`relative flex items-center justify-center ${sizeClasses[size]} ${className}`}>
+    <div className={`relative flex items-center justify-center overflow-hidden ${sizeClasses[size]} ${className}`}>
       <Image
         src={logoSrc}
         alt="Valley Rose Official Brand Logo"
-        width={320}
-        height={360}
+        width={200}
+        height={225}
         className="w-full h-auto object-contain"
         priority
       />
