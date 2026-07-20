@@ -13,8 +13,10 @@ import DynamicLogoSystem from '@/components/sections/DynamicLogoSystem';
 import ColorSystem from '@/components/sections/ColorSystem';
 import TypographySection from '@/components/sections/TypographySection';
 import GraphicPatternIcono from '@/components/sections/GraphicPatternIcono';
-import PackagingApplications from '@/components/sections/PackagingApplications';
+import PatternSystemRevamp from '@/components/sections/PatternSystemRevamp';
 import DigitalMotionSocial from '@/components/sections/DigitalMotionSocial';
+import SocialMediaRevamp from '@/components/sections/SocialMediaRevamp';
+import BrandApplicationsRevamp from '@/components/sections/BrandApplicationsRevamp';
 import ThankYou from '@/components/sections/ThankYou';
 
 export default function Home() {
@@ -52,14 +54,20 @@ export default function Home() {
         {/* Chapter 11: Typography */}
         <TypographySection />
 
-        {/* Chapters 12–15: Graphic Language, Pattern System, Photography Style, Iconography */}
+        {/* Chapters 12, 14, 15: Graphic Language, Photography Style, Iconography */}
         <GraphicPatternIcono />
 
-        {/* Chapters 16–19: Packaging, Floral Wrapping, Wedding Applications, Stationery */}
-        <PackagingApplications />
+        {/* Chapter 13: Revamped Pattern System */}
+        <PatternSystemRevamp />
 
-        {/* Chapters 20–23: Digital Experience, Motion Principles, Social Media, Brand Applications */}
+        {/* Chapters 20, 21: Digital Experience, Motion Principles */}
         <DigitalMotionSocial />
+
+        {/* Chapter 22: Revamped Social Media Editorial Feed */}
+        <SocialMediaRevamp />
+
+        {/* Chapters 16-19 and 23: Revamped Brand Applications System */}
+        <BrandApplicationsRevamp />
 
         {/* Chapter 24: Thank You */}
         <ThankYou />

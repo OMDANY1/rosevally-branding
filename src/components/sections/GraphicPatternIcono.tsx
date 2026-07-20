@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useLang } from '../providers/LanguageProvider';
 import SectionHeader from '../ui/SectionHeader';
 import Image from 'next/image';
 
 export default function GraphicPatternIcono() {
   const { lang } = useLang();
-  const [patternOpacity, setPatternOpacity] = useState(0.05);
 
   const icons = [
     {
@@ -134,73 +133,7 @@ export default function GraphicPatternIcono() {
         </div>
       </section>
 
-      {/* 13 Pattern System */}
-      <section
-        id="chapter-pattern-system"
-        className="py-24 md:py-32 px-6 md:px-12 border-b border-mocha-brown/10"
-      >
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            num="13"
-            title="Pattern System"
-            titleAr="نظام الأنماط"
-            subtitle="Concentric Lines & Low Contrast"
-            subtitleAr="الخطوط الدائرية والتباين المنخفض"
-          />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Pattern Visualizer with slider */}
-            <div className="lg:col-span-6 flex flex-col items-center justify-center p-8 bg-mocha-brown text-ivory-cream rounded-xl relative">
-              {/* Pattern container */}
-              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-ivory-cream/10 bg-ivory-cream">
-                <div 
-                  className="absolute inset-0 transition-opacity duration-300"
-                  style={{ 
-                    opacity: patternOpacity,
-                    backgroundImage: `radial-gradient(circle, #6B4E42 1px, transparent 1px), radial-gradient(circle, #6B4E42 1.5px, transparent 1.5px)`,
-                    backgroundSize: '24px 24px',
-                    backgroundPosition: '0 0, 12px 12px'
-                  }}
-                />
-                
-                {/* Logo core preview centered */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="p-4 bg-ivory-cream border border-mocha-brown/10 text-mocha-brown shadow-xl text-xs uppercase tracking-widest font-mono">
-                    Tonal Preview
-                  </div>
-                </div>
-              </div>
-
-              {/* Opacity Control slider */}
-              <div className="w-full mt-6 flex flex-col gap-2">
-                <div className="flex justify-between text-[10px] font-mono opacity-65">
-                  <span>PATTERN OPACITY: {(patternOpacity * 100).toFixed(0)}%</span>
-                  <span className="text-rose-gold font-semibold">{patternOpacity <= 0.08 ? 'APPROVED (TONAL)' : 'TOO LOUD'}</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="0.01" 
-                  max="0.30" 
-                  step="0.01"
-                  value={patternOpacity} 
-                  onChange={(e) => setPatternOpacity(parseFloat(e.target.value))}
-                  className="w-full h-[2px] bg-ivory-cream/20 appearance-none cursor-pointer rounded-lg accent-rose-gold"
-                />
-              </div>
-            </div>
-
-            {/* Content rationales */}
-            <div className="lg:col-span-6 flex flex-col gap-6 text-sm text-taupe font-sans font-light leading-relaxed">
-              <p>
-                {lang === 'ar'
-                  ? 'تُستخلص الأنماط الهندسية من انسيابية الرمز وتفاصيل بتلات الورد وتماثل أوراق النخيل. يجب استخدام هذه الأنماط فقط بلمسات هادئة جداً (تباين متقارب، مع شفافية تتراوح بين ٣٪ و ٨٪) على ورق المناديل الداخلي وكسوة علب الهدايا والمغاريف. الهدف هو أن تكون الخلفية ملمساً بصرياً لطيفاً لا يشتت الانتباه عن الورد.'
-                  : 'Our brand patterns are generated from the geometric curves of the central rosebud and palm geometries. In physical print applications, they are applied exclusively on tissue wraps, envelope liners, and gift-card slips. They must be printed in extremely low contrast (opacity between 3% and 8%) to ensure they act as subtle textures rather than loud graphics.'
-                }
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 14 Photography Style */}
       <section

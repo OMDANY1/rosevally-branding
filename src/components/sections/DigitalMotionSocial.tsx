@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '../providers/LanguageProvider';
 import SectionHeader from '../ui/SectionHeader';
-import Image from 'next/image';
 import ValleyRoseLogo from '../ui/ValleyRoseLogo';
 
 export default function DigitalMotionSocial() {
@@ -12,16 +11,6 @@ export default function DigitalMotionSocial() {
   
   // Motion states
   const [motionType, setMotionType] = useState<'fade' | 'mask' | 'scale' | 'none'>('none');
-
-  // Social Grid
-  const instagramGrid = [
-    "/images/wedding.png",
-    "/images/editorial-arrangement.png",
-    "/images/packaging.png",
-    "/images/qatif-oasis.png",
-    "/images/rose-macro.png",
-    "/images/arrangements.png"
-  ];
 
   return (
     <div className="bg-ivory-cream border-b border-mocha-brown/10">
@@ -195,95 +184,6 @@ export default function DigitalMotionSocial() {
         </div>
       </section>
 
-      {/* 22 Social Media */}
-      <section
-        id="chapter-social-media"
-        className="py-24 md:py-36 px-6 md:px-12 border-b border-mocha-brown/5"
-      >
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            num="22"
-            title="Social Media"
-            titleAr="وسائل التواصل الاجتماعي"
-            subtitle="Curated Exhibition Feed System"
-            subtitleAr="معرض رقمي منسق ومنظم"
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 flex flex-col gap-6 text-sm text-taupe font-sans font-light leading-relaxed">
-              <p>
-                {currentLang === 'ar'
-                  ? 'نعامل خلاصة منشوراتنا الاجتماعية كمعرض فني تحريري. لا ننشر صوراً صاخبة أو عشوائية؛ بل نلتزم بنسب مساحات سلبية تزيد عن ٥٠٪ ودرجات تباين منخفضة تماثل ألوان علامتنا. تكون العبارات قصيرة وشاعرية، ومكتوبة باللغة العربية الفصحى والإنجليزية.'
-                  : 'Our social footprint is treated as a digital exhibition catalog. We maintain strict negative space ratios (above 50%), and desaturated, warm color grading. Captions are minimal and poetic, using lowercase English and formal Arabic. Loud marketing overlays and discount badges are completely forbidden.'
-                }
-              </p>
-            </div>
-
-            {/* IG Grid Preview */}
-            <div className="lg:col-span-6 flex flex-col items-center">
-              <div className="w-full max-w-sm bg-warm-beige/20 p-4 border border-mocha-brown/10 rounded-xl flex flex-col gap-4 select-none">
-                <span className="font-mono text-[9px] text-taupe uppercase tracking-widest text-center block border-b border-mocha-brown/15 pb-2">Instagram Grid Preview</span>
-                <div className="grid grid-cols-3 gap-2">
-                  {instagramGrid.map((img, idx) => (
-                    <div key={idx} className="relative aspect-square bg-mocha-brown/5 overflow-hidden border border-mocha-brown/5">
-                      <Image 
-                        src={img} 
-                        alt="Instagram specimen" 
-                        fill 
-                        sizes="(max-width: 640px) 30vw, 15vw" 
-                        className="object-cover grayscale-[10%]"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 23 Brand Applications */}
-      <section
-        id="chapter-brand-applications"
-        className="py-24 md:py-36 px-6 md:px-12"
-      >
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            num="23"
-            title="Brand Applications"
-            titleAr="تطبيقات العلامة التجارية"
-            subtitle="Spatial Experience & Touchpoints"
-            subtitleAr="التطبيقات الفراغية ونقاط الاتصال الملموسة"
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Environment Image (6 cols) */}
-            <div className="lg:col-span-6 flex flex-col gap-4">
-              <div className="relative w-full aspect-[4/3] bg-warm-beige/30 overflow-hidden border border-mocha-brown/5 rounded-xl group">
-                <Image
-                  src="/images/closing-hero.png"
-                  alt="Valley Rose Boutique spatial mockup"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover group-hover:scale-[1.02] transition-transform duration-1000"
-                />
-              </div>
-              <span className="text-[10px] tracking-widest text-taupe uppercase font-mono text-center block">
-                {currentLang === 'ar' ? 'محاكاة: المعرض الداخلي لبوتيك وادي الورد' : 'Mockup: Interior Space of Valley Rose Boutique'}
-              </span>
-            </div>
-
-            <div className="lg:col-span-6 flex flex-col gap-6 text-sm text-taupe font-sans font-light leading-relaxed">
-              <p>
-                {currentLang === 'ar'
-                  ? 'تمتد الهوية البصرية لوادي الورد لتشمل تصميم المعارض الحية والأزياء الموحدة ووسائل النقل. تتميز البوتيكات بوجود أسطح من الحجر المطفأ الطبيعي، وجدران من الجبس باللون العاجي (#F7F1E9)، وإضاءة خفية هادئة. ويرتدي الحرفيون مآزر قطنية بنية مخصصة (#6B4E42) مثبت عليها دبوس شعار نحاسي رقيق.'
-                  : 'The Valley Rose visual footprint extends seamlessly into environmental spaces, uniforms, and vehicles. Physical boutiques feature lime-washed plaster walls, solid unpolished sandstone countertops, and hidden ambient lighting. Our florists wear bespoke, structured cotton aprons in Mocha Brown with a small, brushed brass logo badge pinned at the chest.'
-                }
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
